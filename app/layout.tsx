@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import { Providers } from "./providers";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import { Box, Divider } from "@chakra-ui/react";
 
 export const metadata: Metadata = {
   title: "Магазин фильтров Аквамастер",
@@ -24,9 +16,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+    <html lang="ru">
+      <body>
+        <Providers>
+          <Box width="80%" mx="auto" bg={"white"}>
+            <NavBar />
+            <Divider borderColor="gray.300" />
+            {children}
+            <Divider borderColor="gray.300" />
+            <Footer />
+          </Box>
+        </Providers>
       </body>
     </html>
   );
