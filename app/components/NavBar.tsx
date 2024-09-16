@@ -70,6 +70,7 @@ export default function NavBar() {
               colorScheme={"teal"}
               size={"sm"}
               mr={4}
+              _hover={{ bg: "red.400" }}
               rightIcon={<ExternalLinkIcon />}
             >
               Интернет-магазин

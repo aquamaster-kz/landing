@@ -1,20 +1,11 @@
 "use client";
 
-import {
-  Box,
-  Container,
-  Stack,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Container, Stack, Text } from "@chakra-ui/react";
 
 export default function Footer() {
   const currentYear: number = new Date().getFullYear();
   return (
-    <Box
-      bg={useColorModeValue("gray.50", "gray.900")}
-      color={useColorModeValue("gray.700", "gray.200")}
-    >
+    <Box>
       <Container
         as={Stack}
         maxW={"6xl"}

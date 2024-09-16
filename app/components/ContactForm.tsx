@@ -33,8 +33,8 @@ export default function ContactForm() {
       <Flex>
         <Box
           borderRadius="lg"
-          m={{ sm: 4, md: 8, lg: 16 }}
-          p={{ sm: 4, md: 8, lg: 16 }}
+          m={{ sm: 6, md: 12, lg: 24 }}
+          p={{ sm: 5, md: 10, lg: 15 }}
           borderWidth={"1px"}
           borderColor={"teal"}
         >
@@ -51,7 +51,7 @@ export default function ContactForm() {
                         size="md"
                         height="48px"
                         variant="ghost"
-                        _hover={{ border: "2px solid #1C6FEB" }}
+                        _hover={{ border: "2px solid teal" }}
                         leftIcon={
                           <MdPhone color="rgb(22, 65, 148)" size="20px" />
                         }
@@ -62,7 +62,7 @@ export default function ContactForm() {
                         size="md"
                         height="48px"
                         variant="ghost"
-                        _hover={{ border: "2px solid #1C6FEB" }}
+                        _hover={{ border: "2px solid teal" }}
                         leftIcon={
                           <MdEmail color="rgb(22, 65, 148)" size="20px" />
                         }
@@ -74,7 +74,7 @@ export default function ContactForm() {
                         height="48px"
                         width="200px"
                         variant="ghost"
-                        _hover={{ border: "2px solid #1C6FEB" }}
+                        _hover={{ border: "2px solid teal" }}
                         leftIcon={
                           <MdLocationOn color="rgb(22, 65, 148)" size="20px" />
                         }
@@ -94,7 +94,7 @@ export default function ContactForm() {
                       variant="ghost"
                       size="lg"
                       isRound={true}
-                      _hover={{ bg: "#0D74FF" }}
+                      _hover={{ bg: "red.200" }}
                       icon={<MdFacebook size="28px" color="teal" />}
                     />
                     <IconButton
@@ -102,7 +102,7 @@ export default function ContactForm() {
                       variant="ghost"
                       size="lg"
                       isRound={true}
-                      _hover={{ bg: "#0D74FF" }}
+                      _hover={{ bg: "red.200" }}
                       icon={<BsInstagram size="28px" color="teal" />}
                     />
                   </HStack>
@@ -153,7 +153,7 @@ export default function ContactForm() {
                           variant="solid"
                           bg="rgb(22, 65, 148)"
                           color="white"
-                          _hover={{ color: "teal" }}
+                          _hover={{ bg: "red.400" }}
                         >
                           Отправить сообщение
                         </Button>
