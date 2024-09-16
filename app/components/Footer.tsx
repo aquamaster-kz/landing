@@ -8,7 +8,8 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-export default function SmallWithNavigation() {
+export default function Footer() {
+  const currentYear: number = new Date().getFullYear();
   return (
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}
@@ -37,7 +38,7 @@ export default function SmallWithNavigation() {
             Контакты
           </Box>
         </Stack>
-        <Text>© 2024 Аквамастер. Все права защищены.</Text>
+        <Text>© 2007 - {currentYear} Аквамастер. Все права защищены.</Text>
       </Container>
     </Box>
   );

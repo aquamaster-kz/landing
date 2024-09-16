@@ -43,12 +43,12 @@ const features = [
 
 export default function CompanyFeatures() {
   return (
-    <Box maxW="7xl" mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
+    <Box maxW="7xl" mx={"auto"} px={{ base: 2, sm: 12, md: 17 }}>
       <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
         <chakra.h1
           textAlign={"center"}
           fontSize={"4xl"}
-          py={10}
+          py={20}
           fontWeight={"bold"}
           textColor={"rgb(22, 65, 148)"}
         >
