@@ -9,10 +9,8 @@ import {
   Text,
   Button,
   Image,
-  Icon,
   IconButton,
   createIcon,
-  IconProps,
   useColorModeValue,
 } from "@chakra-ui/react";
 
@@ -41,19 +39,28 @@ export default function HeroSection() {
                 position: "absolute",
                 bottom: 1,
                 left: 0,
-                bg: "red.400",
+                bg: useColorModeValue("brand.primary.200", "brand.primary.500"),
                 zIndex: -1,
               }}
-              textColor={"teal"}
+              textColor={useColorModeValue(
+                "brand.secondary.500",
+                "brand.secondary.100"
+              )}
             >
               Современные фильтры
             </Text>
             <br />
-            <Text as={"span"} color={"rgb(22, 65, 148)"}>
+            <Text
+              as={"span"}
+              color={useColorModeValue(
+                "brand.primary.500",
+                "brand.primary.200"
+              )}
+            >
               для очистки воды
             </Text>
           </Heading>
-          <Text color={"gray.500"}>
+          <Text color={useColorModeValue("light.text", "dark.text")}>
             Качественная очистка воды — залог здоровья и долголетия. Предлагаем
             самые современные фильтры для очистки воды «Аквафор», Aqualife,
             Aquavit, Hubert. Все они отличаются высокой эффективностью,
@@ -71,9 +78,15 @@ export default function HeroSection() {
               size={"lg"}
               fontWeight={"normal"}
               px={6}
-              colorScheme={"rgb(22, 65, 148)"}
-              bg={"rgb(22, 65, 148)"}
-              _hover={{ bg: "red.300" }}
+              colorScheme={"brand.primary.500"}
+              bg={useColorModeValue("brand.primary.500", "brand.secondary.500")}
+              textColor={"white"}
+              _hover={{
+                bg: useColorModeValue(
+                  "brand.tertiary.300",
+                  "brand.tertiary.500"
+                ),
+              }}
               leftIcon={<PlayIcon h={4} w={4} color={"gray.300"} />}
             >
               Как это работает

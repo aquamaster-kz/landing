@@ -17,7 +17,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Links = ["Главная", "О нас", "Блог", "Контакты"];
+const Links = ["Главная", "О нас", "Контакты"];
 
 const NavLink = (props: Props) => {
   const { children } = props;
@@ -29,9 +29,9 @@ const NavLink = (props: Props) => {
       rounded={"md"}
       _hover={{
         textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
+        bg: useColorModeValue("brand.tertiary.200", "brand.secondary.500"),
       }}
-      href={"#"}
+      href={"#contactRef"}
     >
       {children}
     </Box>
@@ -40,10 +40,14 @@ const NavLink = (props: Props) => {
 
 export default function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const backgroundColor = useColorModeValue(
+    "light.background",
+    "dark.background"
+  );
 
   return (
     <>
-      <Box bg={"white"} px={4}>
+      <Box bg={backgroundColor} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -67,10 +71,13 @@ export default function NavBar() {
           <Flex alignItems={"center"}>
             <Button
               variant={"solid"}
-              colorScheme={"teal"}
               size={"sm"}
+              bg={"brand.secondary.500"}
               mr={4}
-              _hover={{ bg: "red.400" }}
+              _hover={{
+                bg: "brand.tertiary.300",
+              }}
+              textColor={"white"}
               rightIcon={<ExternalLinkIcon />}
             >
               Интернет-магазин

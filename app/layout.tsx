@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { Providers } from "./providers";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import { Box, Divider } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 export const metadata: Metadata = {
   title: "Магазин фильтров Аквамастер",
@@ -19,11 +24,11 @@ export default function RootLayout({
     <html lang="ru">
       <body>
         <Providers>
-          <Box width="80%" mx="auto" bg={"white"}>
+          <Box width="90%" mx="auto" shadow="xl" borderRadius="md">
             <NavBar />
-            <Divider borderColor="gray.300" />
+            <Divider />
             {children}
-            <Divider borderColor="gray.300" />
+            <Divider />
             <Footer />
           </Box>
         </Providers>

@@ -13,6 +13,7 @@ import {
   UnorderedList,
   SimpleGrid,
   Box,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { ChevronDownIcon } from "@chakra-ui/icons";
@@ -31,14 +32,21 @@ export default function FAQ() {
           textAlign={"center"}
           fontSize={"4xl"}
           fontWeight={"bold"}
-          textColor={"rgb(22, 65, 148)"}
+          textColor={useColorModeValue(
+            "brand.primary.500",
+            "brand.primary.200"
+          )}
           pb={20}
         >
           Часто задаваемые вопросы?
         </chakra.h1>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
           <Box>
-            <Accordion allowMultiple rounded="lg">
+            <Accordion
+              allowMultiple
+              rounded="lg"
+              textColor={useColorModeValue("light.text", "dark.text")}
+            >
               <AccordionItem>
                 <AccordionButton
                   sx={{
@@ -63,7 +71,7 @@ export default function FAQ() {
                   <ChevronDownIcon fontSize="24px" />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <UnorderedList color="gray.600">
+                  <UnorderedList>
                     <ListItem>
                       Механические фильтры – очищают воду от крупных частиц,
                       таких как песок, ржавчина, грязь.
@@ -107,7 +115,7 @@ export default function FAQ() {
                   <ChevronDownIcon fontSize="24px" />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <Text color="gray.600">
+                  <Text>
                     Выбор фильтра зависит от качества воды, поступающей в
                     квартиру. Если вода содержит много механических загрязнений
                     (ржавчина, песок), подойдёт механический фильтр. Для воды с
@@ -136,11 +144,11 @@ export default function FAQ() {
                   <ChevronDownIcon fontSize="24px" />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <Text color="gray.600">
+                  <Text>
                     Частота замены зависит от типа фильтра и качества воды.
                     Обычно:
                   </Text>
-                  <UnorderedList color="gray.600">
+                  <UnorderedList>
                     <ListItem>
                       Механические и угольные фильтры меняют каждые 3-6 месяцев.
                     </ListItem>
@@ -173,10 +181,8 @@ export default function FAQ() {
                   <ChevronDownIcon fontSize="24px" />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <Text color="gray.600">
-                    Признаки того, что фильтр нужно заменить:
-                  </Text>
-                  <UnorderedList color="gray.600">
+                  <Text>Признаки того, что фильтр нужно заменить:</Text>
+                  <UnorderedList>
                     <ListItem>Замедленный поток воды.</ListItem>
                     <ListItem>
                       Появление запаха или изменения вкуса воды.
@@ -209,7 +215,7 @@ export default function FAQ() {
                   <ChevronDownIcon fontSize="24px" />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <Text color="gray.600">
+                  <Text>
                     Да, большинство фильтров можно установить самостоятельно,
                     если следовать инструкции. Однако для сложных систем, таких
                     как обратный осмос, лучше обратиться к специалисту.
@@ -236,7 +242,7 @@ export default function FAQ() {
                   <ChevronDownIcon fontSize="24px" />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <Text color="gray.600">
+                  <Text>
                     Каждый фильтр решает определённые задачи. Например, угольные
                     фильтры не удаляют соли жёсткости или вирусы, а механические
                     фильтры не справляются с растворёнными химическими
@@ -270,7 +276,7 @@ export default function FAQ() {
                   <ChevronDownIcon fontSize="24px" />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <Text color="gray.600">
+                  <Text>
                     Да, большинство фильтров, особенно угольные и системы
                     обратного осмоса, могут существенно улучшить вкус и запах
                     воды, удалив хлор и органические примеси.
@@ -296,7 +302,7 @@ export default function FAQ() {
                   <ChevronDownIcon fontSize="24px" />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <Text color="gray.600">
+                  <Text>
                     Обратный осмос — это процесс фильтрации, при котором вода
                     проходит через специальную мембрану, которая задерживает
                     почти все виды загрязнений. Эта система способна удалять
@@ -324,7 +330,7 @@ export default function FAQ() {
                   <ChevronDownIcon fontSize="24px" />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <Text color="gray.600">
+                  <Text>
                     Цена зависит от типа фильтра и сложности установки. Простые
                     фильтры (кувшины) стоят от 3 000 до 10 000 тенге. Системы
                     обратного осмоса могут стоить от 50 000 до 200 000 тенге и
@@ -352,7 +358,7 @@ export default function FAQ() {
                   <ChevronDownIcon fontSize="24px" />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <Text color="gray.600">
+                  <Text>
                     Да, даже очищенная вода из городских сетей может содержать
                     хлор, металлы или другие примеси. Фильтрация улучшит её
                     качество и вкус, а также защитит от случайных загрязнений в
@@ -380,7 +386,7 @@ export default function FAQ() {
                   <ChevronDownIcon fontSize="24px" />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <Text color="gray.600">
+                  <Text>
                     Да, для этого подходят ионообменные фильтры, которые
                     смягчают воду, удаляя из неё соли кальция и магния,
                     предотвращая накипь. Если у вас есть другие вопросы по

@@ -22,7 +22,10 @@ function StatsCard(props: StatsCardProps) {
       py={"5"}
       shadow={"xl"}
       border={"1px solid"}
-      borderColor={useColorModeValue("gray.800", "gray.500")}
+      borderColor={useColorModeValue(
+        "brand.secondary.500",
+        "brand.secondary.300"
+      )}
       rounded={"lg"}
     >
       <StatLabel fontWeight={"medium"} isTruncated>
@@ -43,11 +46,15 @@ export default function StatisticsSection() {
         fontSize={"4xl"}
         pb={20}
         fontWeight={"bold"}
-        textColor={"rgb(22, 65, 148)"}
+        textColor={useColorModeValue("brand.primary.500", "brand.primary.200")}
       >
         Почему мы?
       </chakra.h1>
-      <SimpleGrid columns={{ base: 1, md: 4 }} spacing={{ base: 5, lg: 8 }}>
+      <SimpleGrid
+        columns={{ base: 1, md: 4 }}
+        spacing={{ base: 5, lg: 8 }}
+        textColor={useColorModeValue("light.text", "dark.text")}
+      >
         <StatsCard title={"Гарантия"} stat={"6 месяцев на все оборудование"} />
         <StatsCard
           title={"Возможность"}

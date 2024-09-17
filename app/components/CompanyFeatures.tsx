@@ -10,6 +10,7 @@ import {
   HStack,
   VStack,
   chakra,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 
@@ -50,22 +51,33 @@ export default function CompanyFeatures() {
           fontSize={"4xl"}
           py={20}
           fontWeight={"bold"}
-          textColor={"rgb(22, 65, 148)"}
+          textColor={useColorModeValue(
+            "brand.primary.500",
+            "brand.primary.200"
+          )}
         >
           АКВАМАСТЕР — очистка воды на профессиональном уровне
         </chakra.h1>
       </Stack>
 
-      <Container maxW={"6xl"} mt={10}>
+      <Container maxW={"6xl"}>
         <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={10}>
           {features.map((feature) => (
             <HStack key={feature.id} align={"top"}>
-              <Box color={"green.400"} px={2}>
+              <Box color={"green.500"} px={2}>
                 <Icon as={feature.icon} />
               </Box>
               <VStack align={"start"}>
-                <Text fontWeight={600}>{feature.title}</Text>
-                <Text color={"gray.600"}>{feature.text}</Text>
+                <Text
+                  color={useColorModeValue("light.text", "dark.text")}
+                  fontWeight={600}
+                  fontSize={"lg"}
+                >
+                  {feature.title}
+                </Text>
+                <Text color={useColorModeValue("light.text", "dark.text")}>
+                  {feature.text}
+                </Text>
               </VStack>
             </HStack>
           ))}

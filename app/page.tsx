@@ -10,13 +10,13 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <Divider borderColor="teal" />
+      <Divider />
       <CompanyFeatures />
       <OrderFeatures />
       <StatisticsSection />
-      <Divider borderColor="teal" />
+      <Divider />
       <FAQ />
-      <Divider borderColor="teal" />
+      <Divider />
       <ContactForm />
     </>
   );

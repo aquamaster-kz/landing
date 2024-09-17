@@ -1,6 +1,12 @@
 "use client";
 
-import { Box, Container, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Stack,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 export default function Footer() {
   const currentYear: number = new Date().getFullYear();
@@ -16,16 +22,52 @@ export default function Footer() {
         align={{ base: "center", md: "center" }}
       >
         <Stack direction={"row"} spacing={6}>
-          <Box as="a" href={"#"}>
+          <Box
+            as="a"
+            href={"#"}
+            px={2}
+            py={1}
+            rounded={"md"}
+            _hover={{
+              textDecoration: "none",
+              bg: useColorModeValue(
+                "brand.tertiary.200",
+                "brand.secondary.500"
+              ),
+            }}
+          >
             Главная
           </Box>
-          <Box as="a" href={"#"}>
+          <Box
+            as="a"
+            href={"#"}
+            px={2}
+            py={1}
+            rounded={"md"}
+            _hover={{
+              textDecoration: "none",
+              bg: useColorModeValue(
+                "brand.tertiary.200",
+                "brand.secondary.500"
+              ),
+            }}
+          >
             О нас
           </Box>
-          <Box as="a" href={"#"}>
-            Блог
-          </Box>
-          <Box as="a" href={"#"}>
+          <Box
+            as="a"
+            href={"#contactRef"}
+            px={2}
+            py={1}
+            rounded={"md"}
+            _hover={{
+              textDecoration: "none",
+              bg: useColorModeValue(
+                "brand.tertiary.200",
+                "brand.secondary.500"
+              ),
+            }}
+          >
             Контакты
           </Box>
         </Stack>
