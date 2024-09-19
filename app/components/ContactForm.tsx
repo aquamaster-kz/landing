@@ -20,13 +20,7 @@ import {
   useColorModeValue,
   Link,
 } from "@chakra-ui/react";
-import {
-  MdPhone,
-  MdEmail,
-  MdLocationOn,
-  MdFacebook,
-  MdOutlineEmail,
-} from "react-icons/md";
+import { MdPhone, MdEmail, MdLocationOn, MdOutlineEmail } from "react-icons/md";
 import { BsPerson, BsInstagram, BsWhatsapp } from "react-icons/bs";
 
 export default function ContactForm() {
@@ -42,6 +36,7 @@ export default function ContactForm() {
             "brand.secondary.500",
             "brand.secondary.100"
           )}
+          shadow="xl"
         >
           <Box p={4}>
             <Wrap spacing={{ base: 20, sm: 3, md: 5, lg: 20 }}>
@@ -119,7 +114,7 @@ export default function ContactForm() {
                     </VStack>
                   </Box>
                   <HStack alignItems="flex-start">
-                    <Link href="https://wa.me/87015195083" isExternal>
+                    <Link href="https://wa.me/77015195083" isExternal>
                       <IconButton
                         aria-label="whatsapp"
                         variant="ghost"

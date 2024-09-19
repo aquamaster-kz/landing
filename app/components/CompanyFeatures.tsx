@@ -43,6 +43,7 @@ const features = [
 ];
 
 export default function CompanyFeatures() {
+  const textColor = useColorModeValue("light.text", "dark.text");
   return (
     <Box maxW="7xl" mx={"auto"} px={{ base: 2, sm: 12, md: 17 }}>
       <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
@@ -68,16 +69,10 @@ export default function CompanyFeatures() {
                 <Icon as={feature.icon} />
               </Box>
               <VStack align={"start"}>
-                <Text
-                  color={useColorModeValue("light.text", "dark.text")}
-                  fontWeight={600}
-                  fontSize={"lg"}
-                >
+                <Text color={textColor} fontWeight={600} fontSize={"lg"}>
                   {feature.title}
                 </Text>
-                <Text color={useColorModeValue("light.text", "dark.text")}>
-                  {feature.text}
-                </Text>
+                <Text color={textColor}>{feature.text}</Text>
               </VStack>
             </HStack>
           ))}

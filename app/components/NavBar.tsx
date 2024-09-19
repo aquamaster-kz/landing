@@ -9,6 +9,7 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  useToast,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import ColorModeToggle from "./ColorModeToggle";
@@ -45,6 +46,19 @@ export default function NavBar() {
     "dark.background"
   );
 
+  const toast = useToast();
+
+  const handleClick = () => {
+    toast({
+      title: "Наш онлайн-магазин скоро откроется!",
+      description:
+        "Следите за обновлениями и будьте первыми в курсе новых товаров и предложений.",
+      status: "info",
+      duration: 5000,
+      isClosable: true,
+    });
+  };
+
   return (
     <>
       <Box bg={backgroundColor} px={4}>
@@ -79,6 +93,7 @@ export default function NavBar() {
               }}
               textColor={"white"}
               rightIcon={<ExternalLinkIcon />}
+              onClick={handleClick}
             >
               Интернет-магазин
             </Button>

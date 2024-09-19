@@ -19,6 +19,13 @@ export default function HeroSection() {
   const togglePlay = () => {
     setIsPlaying((prevState) => !prevState);
   };
+  const handlePause = () => {
+    setIsPlaying(false);
+  };
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+  };
 
   return (
     <Container maxW={"7xl"}>
@@ -127,6 +134,8 @@ export default function HeroSection() {
               volume={0.5}
               width={"100%"}
               height={"100%"}
+              onPause={handlePause}
+              onPlay={handlePlay}
             />
           </Box>
         </Flex>
