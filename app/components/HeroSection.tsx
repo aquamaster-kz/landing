@@ -28,7 +28,7 @@ export default function HeroSection() {
   };
 
   return (
-    <Container maxW={"7xl"}>
+    <Container id="heroRef" maxW={"7xl"}>
       <Stack
         align={"center"}
         spacing={{ base: 8, md: 10 }}

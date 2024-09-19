@@ -16,12 +16,17 @@ import ColorModeToggle from "./ColorModeToggle";
 
 interface Props {
   children: React.ReactNode;
+  href: string;
 }
 
-const Links = ["Главная", "О нас", "Контакты"];
+const Links = [
+  { text: "Главная", href: "#heroRef" },
+  { text: "О нас", href: "#companyRef" },
+  { text: "Контакты", href: "#contactRef" },
+];
 
 const NavLink = (props: Props) => {
-  const { children } = props;
+  const { children, href } = props;
   return (
     <Box
       as="a"
@@ -32,7 +37,7 @@ const NavLink = (props: Props) => {
         textDecoration: "none",
         bg: useColorModeValue("brand.tertiary.200", "brand.secondary.500"),
       }}
-      href={"#contactRef"}
+      href={href}
     >
       {children}
     </Box>
@@ -78,7 +83,9 @@ export default function NavBar() {
               display={{ base: "none", md: "flex" }}
             >
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <NavLink key={link.text} href={link.href}>
+                  {link.text}
+                </NavLink>
               ))}
             </HStack>
           </HStack>
@@ -105,7 +112,9 @@ export default function NavBar() {
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <NavLink key={link.text} href={link.href}>
+                  {link.text}
+                </NavLink>
               ))}
             </Stack>
           </Box>

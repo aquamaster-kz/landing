@@ -24,7 +24,7 @@ export default function Footer() {
         <Stack direction={"row"} spacing={6}>
           <Box
             as="a"
-            href={"#"}
+            href={"#heroRef"}
             px={2}
             py={1}
             rounded={"md"}
@@ -40,7 +40,7 @@ export default function Footer() {
           </Box>
           <Box
             as="a"
-            href={"#"}
+            href={"#companyRef"}
             px={2}
             py={1}
             rounded={"md"}

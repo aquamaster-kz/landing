@@ -45,12 +45,22 @@ const features = [
 export default function CompanyFeatures() {
   const textColor = useColorModeValue("light.text", "dark.text");
   return (
-    <Box maxW="7xl" mx={"auto"} px={{ base: 2, sm: 12, md: 17 }}>
-      <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
+    <Box
+      id="companyRef"
+      maxW="7xl"
+      mx={"auto"}
+      px={{ base: 2, sm: 12, md: 17 }}
+    >
+      <Stack
+        spacing={4}
+        as={Container}
+        maxW={"3xl"}
+        textAlign={"center"}
+        py={20}
+      >
         <chakra.h1
           textAlign={"center"}
           fontSize={"4xl"}
-          py={20}
           fontWeight={"bold"}
           textColor={useColorModeValue(
             "brand.primary.500",
@@ -59,6 +69,14 @@ export default function CompanyFeatures() {
         >
           АКВАМАСТЕР — очистка воды на профессиональном уровне
         </chakra.h1>
+        <Text color={textColor}>
+          Наша компания существует с 2007 года и зарекомендовала себя как
+          надежный поставщик высококачественных фильтров для воды.
+        </Text>
+        <Text color={textColor}>
+          Мы доставим ваш заказ по Астане и по Казахстану, осуществим подробную
+          консультацию по товарам и поможем с выбором.
+        </Text>
       </Stack>
 
       <Container maxW={"6xl"}>
