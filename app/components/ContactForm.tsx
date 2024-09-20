@@ -25,11 +25,16 @@ import { BsPerson, BsInstagram, BsWhatsapp } from "react-icons/bs";
 
 export default function ContactForm() {
   return (
-    <Container id="contactRef" maxW="full" centerContent overflow="hidden">
+    <Container
+      id="contactRef"
+      maxW="full"
+      centerContent
+      overflow="hidden"
+      my={{ base: 5, sm: 6, md: 12, lg: 20 }}
+    >
       <Flex>
         <Box
           borderRadius="lg"
-          m={{ sm: 6, md: 12, lg: 24 }}
           p={{ sm: 5, md: 10, lg: 15 }}
           borderWidth={"1px"}
           borderColor={useColorModeValue(
@@ -39,7 +44,7 @@ export default function ContactForm() {
           shadow="xl"
         >
           <Box p={4}>
-            <Wrap spacing={{ base: 20, sm: 3, md: 5, lg: 20 }}>
+            <Wrap spacing={{ base: 5, sm: 5, md: 10, lg: 20 }}>
               <WrapItem>
                 <Box>
                   <Heading

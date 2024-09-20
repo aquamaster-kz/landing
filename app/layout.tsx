@@ -2,12 +2,7 @@ import type { Metadata } from "next";
 import { Providers } from "./providers";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import {
-  Box,
-  Divider,
-  useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Divider } from "@chakra-ui/react";
 
 export const metadata: Metadata = {
   title: "Магазин фильтров Аквамастер",

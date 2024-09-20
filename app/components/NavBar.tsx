@@ -10,9 +10,10 @@ import {
   useColorModeValue,
   Stack,
   useToast,
+  useColorMode,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ExternalLinkIcon } from "@chakra-ui/icons";
-import ColorModeToggle from "./ColorModeToggle";
+import { BsMoonStarsFill, BsSun } from "react-icons/bs";
 
 interface Props {
   children: React.ReactNode;
@@ -46,13 +47,18 @@ const NavLink = (props: Props) => {
 
 export default function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const { colorMode, toggleColorMode } = useColorMode();
+  const colorToggleButtonHover = useColorModeValue(
+    "brand.tertiary.200",
+    "brand.secondary.500"
+  );
   const backgroundColor = useColorModeValue(
     "light.background",
     "dark.background"
   );
 
   const toast = useToast();
-
   const handleClick = () => {
     toast({
       title: "Наш онлайн-магазин скоро откроется!",
@@ -70,13 +76,14 @@ export default function NavBar() {
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
+            variant={"ghost"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={"Open Menu"}
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box>АКВАМАСТЕР</Box>
+            <Box mr={4}>АКВАМАСТЕР</Box>
             <HStack
               as={"nav"}
               spacing={4}
@@ -89,23 +96,40 @@ export default function NavBar() {
               ))}
             </HStack>
           </HStack>
-          <Flex alignItems={"center"}>
-            <Button
-              variant={"solid"}
-              size={"sm"}
-              bg={"brand.secondary.500"}
-              mr={4}
-              _hover={{
-                bg: "brand.tertiary.300",
-              }}
-              textColor={"white"}
-              rightIcon={<ExternalLinkIcon />}
-              onClick={handleClick}
-            >
-              Интернет-магазин
-            </Button>
-            <ColorModeToggle />
-          </Flex>
+          <Button
+            variant={"solid"}
+            size={{ base: "sm", md: "sm", lg: "sm" }}
+            bg={"brand.secondary.500"}
+            mr={4}
+            _hover={{
+              bg: "brand.tertiary.300",
+            }}
+            textColor={"white"}
+            rightIcon={<ExternalLinkIcon />}
+            onClick={handleClick}
+            whiteSpace={{ base: "normal", md: "nowrap" }}
+            width={"auto"}
+            ml={"auto"}
+          >
+            Интернет-магазин
+          </Button>
+          <Button
+            onClick={toggleColorMode}
+            size={{ base: "sm", md: "sm", lg: "sm" }}
+            bg={backgroundColor}
+            mr={4}
+            _hover={{
+              bg: colorToggleButtonHover,
+            }}
+            width={"auto"}
+            display={{ base: "none", md: "inline-flex" }}
+          >
+            {colorMode === "light" ? (
+              <BsMoonStarsFill size={"20px"} />
+            ) : (
+              <BsSun color={"yellow"} size={"20px"} />
+            )}
+          </Button>
         </Flex>
 
         {isOpen ? (
@@ -117,6 +141,22 @@ export default function NavBar() {
                 </NavLink>
               ))}
             </Stack>
+            <Button
+              onClick={toggleColorMode}
+              size={{ base: "md", md: "md", lg: "md" }}
+              bg={backgroundColor}
+              mt={4}
+              _hover={{
+                bg: colorToggleButtonHover,
+              }}
+              width={"auto"}
+            >
+              {colorMode === "light" ? (
+                <BsMoonStarsFill size={"20px"} />
+              ) : (
+                <BsSun color={"yellow"} size={"20px"} />
+              )}
+            </Button>
           </Box>
         ) : null}
       </Box>
