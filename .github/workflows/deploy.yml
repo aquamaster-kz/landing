@@ -22,13 +22,21 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get version from package.json
+        id: get_version
+        run: |
+          VERSION=$(jq -r '.version' package.json)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/landing:latest
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}
+            ghcr.io/${{ github.repository_owner }}/landing:latest
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
@@ -39,6 +47,6 @@ jobs:
           script: |
             docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
             docker pull ghcr.io/${{ github.repository_owner }}/landing:latest
-            docker stop landing || true
-            docker rm landing || true
-            docker run -d --name landing -p 80:3000 ghcr.io/${{ github.repository_owner }}/landing:latest
+            docker stop aquamaster-landing || true
+            docker rm aquamaster-landing || true
+            docker run -d --name aquamaster-landing -p 80:3000 --restart unless-stopped ghcr.io/${{ github.repository_owner }}/landing:latest
