@@ -28,9 +28,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/landing:latest
-            ghcr.io/${{ github.repository_owner }}/landing:${{ github.ref_name }}
+          tags: ghcr.io/${{ github.repository_owner }}/landing:latest
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v0.1.5
