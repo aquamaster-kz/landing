@@ -1,0 +1,18 @@
+services:
+  app:
+    container_name: aquamaster-landing
+    build:
+      dockerfile: Dockerfile
+      context: .
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      NODE_ENV: ${NODE_ENV}
+    restart: always
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    networks:
+      - aquamaster-network
+networks:
+  aquamaster-network:
