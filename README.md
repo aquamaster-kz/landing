@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Landing Page
 
-## Getting Started
+Welcome to the Aquamaster.kz Landing Page project! This page is designed to introduce the small family-run business specializing in water purification and osmosis systems. The goal is to provide a clean and informative entry point for customers interested in water filtration products and services.
 
-First, run the development server:
+## Purpose
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The landing page serves as an introduction to Aquamaster.kz, showcasing the business's mission, services, and products. It aims to:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Inform customers about the importance of water purification and the benefits of using high-quality filtration systems.
+- Encourage visitors to explore the full online store for more details and purchases.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework:** [Next.js](https://nextjs.org/)
+- **UI Library:** [Chakra UI](https://chakra-ui.com/)
+- **Deployment:** CI/CD pipeline for quick updates and changes
+- **Hosting:** **TODO** 
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- [x] **Responsive Design:** Optimized for all devices, ensuring a great experience on desktops, tablets, and smartphones.
+- [x] **Dark/Light Mode:** Users can toggle between dark and light themes for a personalized experience.
+- [x] **Contact Form:** A simple way for visitors to reach out for inquiries or more information.
+- [x] **Company Features Section:** Highlighting the core values, expertise, and services provided by Aquamaster.kz.
+- [x] **CTA Buttons:** Clear and visible call-to-action buttons for navigating to the online store.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contribution
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Contributions are welcome! If you have ideas for improving the landing page, feel free to open an issue or submit a pull request.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**TODO**
