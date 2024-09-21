@@ -1,12 +1,7 @@
-name: Aquamaster.kz landing page
+name: Install the dependencies and build
 
 on:
   push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
 
 jobs:
   build:
