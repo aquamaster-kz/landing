@@ -42,6 +42,10 @@ jobs:
           docker push ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}
           docker push ghcr.io/${{ github.repository_owner }}/landing:latest
 
+      - name: Copy docker-compose.yml to VPS
+        run: |
+          scp -i ${{ secrets.VPS_PRIVATE_KEY }} -o StrictHostKeyChecking=no ./docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}
+
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
@@ -49,9 +53,9 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_PRIVATE_KEY }}
           script: |
-            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-            scp -i ${{ secrets.VPS_PRIVATE_KEY }} -o StrictHostKeyChecking=no ./docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
             docker compose down || true
             docker compose up -d
             docker exec nginx nginx -s reload
+            docker system prune -af --volumes
