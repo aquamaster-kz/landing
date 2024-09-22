@@ -52,8 +52,6 @@ jobs:
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             scp -i ${{ secrets.VPS_PRIVATE_KEY }} -o StrictHostKeyChecking=no ./docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}
 
-            docker pull ghcr.io/${{ github.repository_owner }}/landing:latest
-
             docker compose down || true
             docker compose up -d
             docker exec nginx nginx -s reload
