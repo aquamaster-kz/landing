@@ -1,18 +1,41 @@
 services:
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ssl-certificates:/etc/letsencrypt
+      - certbot-webroot:/var/www/certbot
+    depends_on:
+      - certbot
+    restart: always
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ssl-certificates:/etc/letsencrypt
+      - certbot-webroot:/var/www/certbot
+      - ./scripts/certbot_entrypoint.py:/usr/local/bin/certbot_entrypoint.py
+    entrypoint: ["python", "/usr/local/bin/certbot_entrypoint.py", "aquamaster.kz", "production"]
+    restart: always
+
   app:
-    container_name: aquamaster-landing
     build:
       dockerfile: Dockerfile
       context: .
-    env_file:
-      - path: .env
-        required: true
-    environment:
-      NODE_ENV: ${NODE_ENV}
+    image: ghcr.io/${{ github.repository_owner }}/landing:latest
+    # image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/landing:latest
+    container_name: aquamaster-landing
     restart: always
     ports:
-      - ${APP_PORT}:${APP_PORT}
-    networks:
-      - aquamaster-network
-networks:
-  aquamaster-network:
+      - "3000:3000"
+
+volumes:
+  ssl-certificates:
+    driver: local
+  certbot-webroot:
+    driver: local

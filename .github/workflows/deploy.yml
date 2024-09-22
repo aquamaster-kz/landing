@@ -28,15 +28,15 @@ jobs:
           VERSION=$(jq -r '.version' package.json)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}
-            ghcr.io/${{ github.repository_owner }}/landing:latest
+      - name: Build Docker image
+        run: |
+          docker-compose build
+          docker tag ghcr.io/${{ github.repository_owner }}/landing:latest ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}
+
+      - name: Push Docker image to GHCR
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}
+          docker push ghcr.io/${{ github.repository_owner }}/landing:latest
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
@@ -47,6 +47,9 @@ jobs:
           script: |
             docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
             docker pull ghcr.io/${{ github.repository_owner }}/landing:latest
-            docker stop aquamaster-landing || true
-            docker rm aquamaster-landing || true
-            docker run -d --name aquamaster-landing -p 80:3000 --restart unless-stopped ghcr.io/${{ github.repository_owner }}/landing:latest
+
+            scp -i ${{ secrets.VPS_PRIVATE_KEY }} -o StrictHostKeyChecking=no ./docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}
+
+            docker-compose down || true
+            docker-compose up -d
+            docker exec nginx nginx -s reload
