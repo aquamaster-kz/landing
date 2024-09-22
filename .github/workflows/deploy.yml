@@ -30,16 +30,14 @@ jobs:
 
       - name: Build Docker image
         run: |
-          REPO=ghcr.io/\${{ github.repository_owner }}/landing
           docker compose build
-          docker tag \$REPO:latest \$REPO:\${{ steps.get_version.outputs.version }}
-          docker tag \$REPO:latest \$REPO:latest
+          docker tag ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}
+          docker tag ghcr.io/${{ github.repository_owner }}/landing:latest
 
       - name: Push Docker image to GHCR
         run: |
-          REPO=ghcr.io/\${{ github.repository_owner }}/landing
-          docker push \$REPO:\${{ steps.get_version.outputs.version }}
-          docker push \$REPO:latest
+          docker push ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}
+          docker push ghcr.io/${{ github.repository_owner }}/landing:latest
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
@@ -48,9 +46,8 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_PRIVATE_KEY }}
           script: |
-            REPO=ghcr.io/\${{ github.repository_owner }}/landing
             docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
-            docker pull \$REPO:latest
+            docker pull ghcr.io/${{ github.repository_owner }}/landing:latest
 
             scp -i ${{ secrets.VPS_PRIVATE_KEY }} -o StrictHostKeyChecking=no ./docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}
 
