@@ -34,8 +34,8 @@ jobs:
           echo "REPO=$REPO" >> $GITHUB_ENV
 
           docker compose build
-          docker tag ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}
-          docker tag ghcr.io/${{ github.repository_owner }}/landing:latest
+          docker tag $REPO:latest $REPO:${{ steps.get_version.outputs.version }}
+          docker tag $REPO:latest $REPO:latest
 
       - name: Push Docker image to GHCR
         run: |
