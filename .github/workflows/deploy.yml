@@ -11,9 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      REPO: ghcr.io/${{ github.repository_owner }}/landing
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -33,12 +30,14 @@ jobs:
 
       - name: Build Docker image
         run: |
+          REPO=ghcr.io/${{ github.repository_owner }}/landing
           docker compose build
           docker tag $REPO:latest $REPO:${{ steps.get_version.outputs.version }}
           docker tag $REPO:latest $REPO:latest
 
       - name: Push Docker image to GHCR
         run: |
+          REPO=ghcr.io/${{ github.repository_owner }}/landing
           docker push $REPO:${{ steps.get_version.outputs.version }}
           docker push $REPO:latest
 
@@ -49,6 +48,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_PRIVATE_KEY }}
           script: |
+            REPO=ghcr.io/${{ github.repository_owner }}/landing
             docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
             docker pull $REPO:latest
 
