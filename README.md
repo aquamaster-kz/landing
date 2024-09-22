@@ -27,7 +27,3 @@ The landing page serves as an introduction to Aquamaster.kz, showcasing the busi
 ## Contribution
 
 Contributions are welcome! If you have ideas for improving the landing page, feel free to open an issue or submit a pull request.
-
-## License
-
-**TODO**

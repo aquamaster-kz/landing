@@ -30,7 +30,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker-compose build
+          docker compose build
           docker tag ghcr.io/${{ github.repository_owner }}/landing:latest ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}
 
       - name: Push Docker image to GHCR
@@ -50,6 +50,6 @@ jobs:
 
             scp -i ${{ secrets.VPS_PRIVATE_KEY }} -o StrictHostKeyChecking=no ./docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}
 
-            docker-compose down || true
-            docker-compose up -d
+            docker compose down || true
+            docker compose up -d
             docker exec nginx nginx -s reload
