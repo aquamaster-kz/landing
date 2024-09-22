@@ -27,7 +27,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
-    image: ghcr.io/${{ github.repository_owner }}/landing:latest
+    image: ${REPO:-ghcr.io/aquamaster-kz/landing:latest}
     # image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/landing:latest
     container_name: aquamaster-landing
     restart: always

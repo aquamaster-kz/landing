@@ -30,14 +30,17 @@ jobs:
 
       - name: Build Docker image
         run: |
+          REPO=ghcr.io/${{ github.repository_owner }}/landing
+          echo "REPO=$REPO" >> $GITHUB_ENV
+
           docker compose build
-          docker tag 'ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}'
-          docker tag 'ghcr.io/${{ github.repository_owner }}/landing:latest'
+          docker tag ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}
+          docker tag ghcr.io/${{ github.repository_owner }}/landing:latest
 
       - name: Push Docker image to GHCR
         run: |
-          docker push 'ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}'
-          docker push 'ghcr.io/${{ github.repository_owner }}/landing:latest'
+          docker push ghcr.io/${{ github.repository_owner }}/landing:${{ steps.get_version.outputs.version }}
+          docker push ghcr.io/${{ github.repository_owner }}/landing:latest
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
