@@ -29,7 +29,7 @@ services:
       - ssl-certificates:/etc/letsencrypt
       - certbot-webroot:/var/www/certbot
       - ./scripts/certbot_entrypoint.py:/usr/local/bin/certbot_entrypoint.py
-    entrypoint: ["python", "/usr/local/bin/certbot_entrypoint.py", "aquamaster.kz", "staging"]
+    entrypoint: ["python", "/usr/local/bin/certbot_entrypoint.py", "aquamaster.kz", "production"]
     depends_on:
       - app
     restart: no
