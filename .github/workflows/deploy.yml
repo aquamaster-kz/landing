@@ -61,3 +61,4 @@ jobs:
             docker compose down || true
             docker compose up -d
             docker exec nginx nginx -s reload
+            docker system prune -af --volumes

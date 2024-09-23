@@ -1,12 +1,12 @@
 services:
   nginx:
-    build:
-      context: .
-      dockerfile: Dockerfile.nginx
+    image: nginx:alpine
     container_name: nginx
     volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ssl-certificates:/etc/letsencrypt
       - certbot-webroot:/var/www/certbot
+    command: /bin/sh -c "chmod 644 /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
     depends_on:
       - certbot
     restart: always
@@ -21,7 +21,7 @@ services:
       - ssl-certificates:/etc/letsencrypt
       - certbot-webroot:/var/www/certbot
       - ./scripts/certbot_entrypoint.py:/usr/local/bin/certbot_entrypoint.py
-    entrypoint: ["python", "/usr/local/bin/certbot_entrypoint.py", "aquamaster.kz", "production"]
+    entrypoint: ["python", "/usr/local/bin/certbot_entrypoint.py", "aquamaster.kz", "development"]
     restart: always
 
   app:
