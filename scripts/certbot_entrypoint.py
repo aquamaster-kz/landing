@@ -50,7 +50,7 @@ def generate_real_cert(is_staging=False):
 
 def renew_certificates():
     while True:
-        remove_existing_certs()  # Удаляем существующие сертификаты
+        remove_existing_certs()
 
         if mode == "development":
             generate_self_signed_cert()
