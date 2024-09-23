@@ -1,4 +1,15 @@
 services:
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    image: ${REPO:-ghcr.io/aquamaster-kz/landing:latest}
+    # image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/landing:latest
+    container_name: aquamaster-landing
+    restart: always
+    ports:
+      - "3000:3000"
+
   nginx:
     image: nginx:alpine
     container_name: nginx
@@ -22,17 +33,6 @@ services:
       - ./scripts/certbot_entrypoint.py:/usr/local/bin/certbot_entrypoint.py
     entrypoint: ["python", "/usr/local/bin/certbot_entrypoint.py", "aquamaster.kz", "staging"]
     restart: no
-
-  app:
-    build:
-      dockerfile: Dockerfile
-      context: .
-    image: ${REPO:-ghcr.io/aquamaster-kz/landing:latest}
-    # image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/landing:latest
-    container_name: aquamaster-landing
-    restart: always
-    ports:
-      - "3000:3000"
 
 volumes:
   ssl-certificates:
