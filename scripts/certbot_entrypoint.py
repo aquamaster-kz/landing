@@ -16,9 +16,13 @@ mode = sys.argv[2]
 
 CERT_DIR = f'/etc/letsencrypt/live/{domain}'
 
+def remove_existing_certs():
+    if os.path.exists(CERT_DIR):
+        print("Removing existing certificates...")
+        subprocess.run(["rm", "-rf", CERT_DIR], check=True)
+
 def generate_self_signed_cert():
     print("Generating self-signed certificate...")
-
     os.makedirs(CERT_DIR, exist_ok=True)
     
     subprocess.run([
@@ -31,7 +35,6 @@ def generate_self_signed_cert():
 
 def generate_real_cert(is_staging=False):
     print("Generating real certificate with Certbot...")
-    
     os.makedirs(CERT_DIR, exist_ok=True)
     
     certbot_cmd = [
@@ -47,6 +50,8 @@ def generate_real_cert(is_staging=False):
 
 def renew_certificates():
     while True:
+        remove_existing_certs()  # Удаляем существующие сертификаты
+
         if mode == "development":
             generate_self_signed_cert()
         elif mode == "production":
@@ -57,7 +62,7 @@ def renew_certificates():
             print("Invalid mode. Use 'production', 'staging' or 'development'.")
             sys.exit(1)
         
-        time.sleep(604800)  # Sleep for 7 days (7 * 24 * 60 * 60 seconds)
+        time.sleep(5184000)  # Sleep for 60 days (60 * 24 * 60 * 60 seconds)
 
 def signal_handler(sig, frame):
     print('Exiting...')
