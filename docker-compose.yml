@@ -20,7 +20,7 @@ services:
       - ssl-certificates:/etc/letsencrypt
       - certbot-webroot:/var/www/certbot
       - ./scripts/certbot_entrypoint.py:/usr/local/bin/certbot_entrypoint.py
-    entrypoint: ["sh", "-c", "chmod +x /usr/local/bin/certbot_entrypoint.py && /usr/local/bin/certbot_entrypoint.py aquamaster.kz development"]
+    entrypoint: ["python", "/usr/local/bin/certbot_entrypoint.py", "aquamaster.kz", "production"]
     restart: always
 
   app:
