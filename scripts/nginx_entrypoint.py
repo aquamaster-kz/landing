@@ -1,11 +1,15 @@
 import os
 import stat
 
-# Change permissions for the default.conf file
+# Path to the default.conf file
 conf_file_path = '/etc/nginx/conf.d/default.conf'
 
-# Set the permissions to read and write for the owner, and read for group and others
-os.chmod(conf_file_path, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IROTH)
+# Check if the file exists
+if os.path.exists(conf_file_path):
+    # Set permissions: owner can read/write, group and others can read
+    os.chmod(conf_file_path, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IROTH)
+else:
+    print(f"Error: {conf_file_path} does not exist.")
 
-# Execute the main command
+# Execute the main Nginx command
 os.execlp('nginx', 'nginx', '-g', 'daemon off;')
