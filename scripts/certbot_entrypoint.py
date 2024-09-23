@@ -50,7 +50,8 @@ def generate_real_cert(is_staging=False):
 
 def renew_certificates():
     while True:
-        remove_existing_certs()
+        if mode in ["staging", "production"]:
+            remove_existing_certs()
 
         if mode == "development":
             generate_self_signed_cert()
@@ -62,7 +63,8 @@ def renew_certificates():
             print("Invalid mode. Use 'production', 'staging' or 'development'.")
             sys.exit(1)
         
-        time.sleep(5184000)  # Sleep for 60 days (60 * 24 * 60 * 60 seconds)
+        print("Waiting for the next renewal cycle...")
+        time.sleep(5184000)  # Sleep for 60 дней (60 * 24 * 60 * 60 секунд)
 
 def signal_handler(sig, frame):
     print('Exiting...')
