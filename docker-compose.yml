@@ -1,9 +1,10 @@
 services:
   nginx:
-    image: nginx:alpine
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
     container_name: nginx
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/custom.conf:ro
       - ssl-certificates:/etc/letsencrypt
       - certbot-webroot:/var/www/certbot
     depends_on:
