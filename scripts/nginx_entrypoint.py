@@ -2,7 +2,7 @@ import os
 import stat
 
 # Path to the default.conf file
-conf_file_path = '/etc/nginx/conf.d/default.conf'
+conf_file_path = '/etc/nginx/conf.d/custom.conf'
 
 # Check if the file exists
 if os.path.exists(conf_file_path):
