@@ -64,7 +64,7 @@ def renew_certificates():
             sys.exit(1)
         
         print("Waiting for the next renewal cycle...")
-        time.sleep(5184000)  # Sleep for 60 дней (60 * 24 * 60 * 60 секунд)
+        time.sleep(5184000)  # Sleep for 60 days
 
 def signal_handler(sig, frame):
     print('Exiting...')
