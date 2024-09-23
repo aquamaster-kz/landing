@@ -8,40 +8,53 @@ import sys
 
 if len(sys.argv) != 3:
     print("Usage: python certbot_entrypoint.py <domain> <mode>")
-    print("Modes: production, development")
+    print("Modes: production, staging, development")
     sys.exit(1)
 
 domain = sys.argv[1]
 mode = sys.argv[2]
 
 # Paths to the certificate and key files
-CERT_DIR = f'/etc/letsencrypt/live/{domain}'
-CERT_PATH = f'{CERT_DIR}/fullchain.pem'
-KEY_PATH = f'{CERT_DIR}/privkey.pem'
+BASE_CERT_DIR = f'/etc/letsencrypt/live/{domain}'
+PROD_CERT_DIR = f'{BASE_CERT_DIR}/production'
+STAGING_CERT_DIR = f'{BASE_CERT_DIR}/staging'
+SELF_SIGNED_CERT_DIR = f'{BASE_CERT_DIR}/self-signed'
+CERT_PATH = f'{PROD_CERT_DIR}/fullchain.pem'
+KEY_PATH = f'{PROD_CERT_DIR}/privkey.pem'
+
+def create_cert_dir_structure():
+    os.makedirs(PROD_CERT_DIR, exist_ok=True)
+    os.makedirs(STAGING_CERT_DIR, exist_ok=True)
+    os.makedirs(SELF_SIGNED_CERT_DIR, exist_ok=True)
 
 def generate_self_signed_cert():
     print("Generating self-signed certificate...")
 
-    os.makedirs(CERT_DIR, exist_ok=True)
+    create_cert_dir_structure()
     
     subprocess.run([
         "openssl", "req", "-x509", "-nodes", "-days", "365", 
         "-newkey", "rsa:2048", 
-        "-keyout", KEY_PATH,
-        "-out", CERT_PATH,
+        "-keyout", f'{SELF_SIGNED_CERT_DIR}/privkey.pem',
+        "-out", f'{SELF_SIGNED_CERT_DIR}/fullchain.pem',
         "-subj", f"/CN={domain}"
     ], check=True)
 
-def generate_real_cert():
+def generate_real_cert(is_staging=False):
     print("Generating real certificate with Certbot...")
     
-    os.makedirs(CERT_DIR, exist_ok=True)
+    create_cert_dir_structure()
     
-    subprocess.run([
+    certbot_cmd = [
         "certbot", "certonly", "--webroot", "-w", "/var/www/certbot", 
         "-d", domain, 
         "--non-interactive", "--agree-tos", "--email", "adil.yergaliyev@gmail.com"
-    ], check=True)
+    ]
+    
+    if is_staging:
+        certbot_cmd += ["--staging"]
+
+    subprocess.run(certbot_cmd, check=True)
 
 def renew_certificates():
     while True:
@@ -51,8 +64,10 @@ def renew_certificates():
                 generate_self_signed_cert()
             elif mode == "production":
                 generate_real_cert()
+            elif mode == "staging":
+                generate_real_cert(is_staging=True)
             else:
-                print("Invalid mode. Use 'production' or 'development'.")
+                print("Invalid mode. Use 'production', 'staging' or 'development'.")
                 sys.exit(1)
         else:
             try:
