@@ -32,6 +32,8 @@ services:
       - certbot-webroot:/var/www/certbot
       - ./scripts/certbot_entrypoint.py:/usr/local/bin/certbot_entrypoint.py
     entrypoint: ["python", "/usr/local/bin/certbot_entrypoint.py", "aquamaster.kz", "staging"]
+    depends_on:
+      - app
     restart: no
 
 volumes:
