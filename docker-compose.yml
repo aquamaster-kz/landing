@@ -2,18 +2,16 @@ services:
   nginx:
     image: nginx:alpine
     container_name: nginx
-    ports:
-      - "80:80"
-      - "443:443"
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/custom.conf:ro
       - ssl-certificates:/etc/letsencrypt
       - certbot-webroot:/var/www/certbot
-      - ./scripts/nginx-entrypoint.py:/usr/local/bin/nginx-entrypoint.py
-    entrypoint: ["python", "/usr/local/bin/nginx-entrypoint.py"]
     depends_on:
       - certbot
     restart: always
+    ports:
+      - "80:80"
+      - "443:443"
 
   certbot:
     image: certbot/certbot
