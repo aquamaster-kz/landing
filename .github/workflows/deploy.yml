@@ -44,8 +44,10 @@ jobs:
 
       - name: Copy docker-compose.yml to VPS
         run: |
-          ls -al
-          scp -i "${{ secrets.VPS_PRIVATE_KEY }}" -o StrictHostKeyChecking=no ./docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}
+          echo "${{ secrets.VPS_PRIVATE_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
+          scp -i private_key.pem -o StrictHostKeyChecking=no ./docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}
+          rm private_key.pem
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
