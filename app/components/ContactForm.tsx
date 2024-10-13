@@ -19,11 +19,33 @@ import {
   Textarea,
   useColorModeValue,
   Link,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import { MdPhone, MdEmail, MdLocationOn, MdOutlineEmail } from "react-icons/md";
 import { BsPerson, BsInstagram, BsWhatsapp } from "react-icons/bs";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+  honeypot: string;
+}
 
 export default function ContactForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    if (data.honeypot) {
+      return;
+    }
+    console.log("Form submitted:", data);
+  };
+
   return (
     <Container
       id="contactRef"
@@ -156,8 +178,17 @@ export default function ContactForm() {
               </WrapItem>
               <WrapItem>
                 <Box color={useColorModeValue("light.text", "dark.text")}>
-                  <VStack spacing={5}>
-                    <FormControl id="name">
+                  <VStack
+                    spacing={5}
+                    as="form"
+                    onSubmit={handleSubmit(onSubmit)}
+                  >
+                    <Input
+                      type="text"
+                      style={{ display: "none" }}
+                      {...register("honeypot")}
+                    />
+                    <FormControl id="name" isInvalid={!!errors.name}>
                       <FormLabel
                         color={useColorModeValue(
                           "brand.secondary.500",
@@ -179,6 +210,13 @@ export default function ContactForm() {
                           type="text"
                           size="md"
                           placeholder="Ваше имя"
+                          {...register("name", {
+                            required: "Имя обязательно",
+                            minLength: {
+                              value: 3,
+                              message: "Имя должно быть минимум 3 символа",
+                            },
+                          })}
                           _placeholder={{
                             color: useColorModeValue(
                               "brand.gray.200",
@@ -187,8 +225,12 @@ export default function ContactForm() {
                           }}
                         />
                       </InputGroup>
+                      <FormErrorMessage>
+                        {errors.name && errors.name.message}
+                      </FormErrorMessage>
                     </FormControl>
-                    <FormControl id="name">
+
+                    <FormControl id="email" isInvalid={!!errors.email}>
                       <FormLabel
                         color={useColorModeValue(
                           "brand.secondary.500",
@@ -210,6 +252,13 @@ export default function ContactForm() {
                           type="text"
                           size="md"
                           placeholder="Ваш почтовый ящик"
+                          {...register("email", {
+                            required: "Почтовый ящик обязателен",
+                            pattern: {
+                              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                              message: "Неверный формат почты",
+                            },
+                          })}
                           _placeholder={{
                             color: useColorModeValue(
                               "brand.gray.200",
@@ -218,8 +267,11 @@ export default function ContactForm() {
                           }}
                         />
                       </InputGroup>
+                      <FormErrorMessage>
+                        {errors.email && errors.email.message}
+                      </FormErrorMessage>
                     </FormControl>
-                    <FormControl id="name">
+                    <FormControl id="message" isInvalid={!!errors.message}>
                       <FormLabel
                         color={useColorModeValue(
                           "brand.secondary.500",
@@ -234,6 +286,14 @@ export default function ContactForm() {
                           "brand.secondary.100"
                         )}
                         placeholder="Если у вас есть вопросы, не стесняйтесь задать их!"
+                        {...register("message", {
+                          required: "Сообщение обязательно",
+                          minLength: {
+                            value: 25,
+                            message:
+                              "Сообщение должно содержать минимум 25 символов",
+                          },
+                        })}
                         _placeholder={{
                           color: useColorModeValue(
                             "brand.gray.200",
@@ -241,9 +301,13 @@ export default function ContactForm() {
                           ),
                         }}
                       />
+                      <FormErrorMessage>
+                        {errors.message && errors.message.message}
+                      </FormErrorMessage>
                     </FormControl>
-                    <FormControl id="name" float="right">
+                    <FormControl id="submit" float="right">
                       <Button
+                        type="submit"
                         variant="solid"
                         colorScheme={"brand.primary.500"}
                         bg={useColorModeValue(
