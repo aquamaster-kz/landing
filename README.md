@@ -1,10 +1,10 @@
 # Landing Page
 
-Welcome to the [aquamaster.kz](https://aquamaster.kz) landing Page project! This page is designed to introduce the small family-run business specializing in water purification and osmosis systems. The goal is to provide a clean and informative entry point for customers interested in water filtration products and services.
+Welcome to the [aquamaster.kz](https://aquamaster.kz) landing page project! This page is designed to introduce the small family-run business specializing in water purification and osmosis systems. The goal is to provide a clean and informative entry point for customers interested in water filtration products and services.
 
 ## Purpose
 
-The landing page serves as an introduction to Aquamaster.kz, showcasing the business's mission, services, and products. It aims to:
+The landing page serves as an introduction to [aquamaster.kz](https://aquamaster.kz), showcasing the business's mission, services, and products. It aims to:
 
 - Inform customers about the importance of water purification and the benefits of using high-quality filtration systems.
 - Encourage visitors to explore the full online store for more details and purchases.
