@@ -12,9 +12,6 @@ services:
     environment:
       CONTACT_EMAIL: ${CONTACT_EMAIL}
       CONTACT_PASS: ${CONTACT_PASS}
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
 
   nginx:
     image: nginx:alpine
@@ -23,8 +20,6 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ssl-certificates:/etc/letsencrypt
       - certbot-webroot:/var/www/certbot
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
     restart: always
     ports:
       - "80:80"
@@ -37,8 +32,6 @@ services:
       - ssl-certificates:/etc/letsencrypt
       - certbot-webroot:/var/www/certbot
       - ./scripts/certbot_entrypoint.py:/usr/local/bin/certbot_entrypoint.py
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
     entrypoint: ["python", "/usr/local/bin/certbot_entrypoint.py", "aquamaster.kz", "production"]
     depends_on:
       - app
