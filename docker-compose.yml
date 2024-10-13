@@ -9,9 +9,6 @@ services:
     restart: always
     ports:
       - "3000:3000"
-    environment:
-      - CONTACT_EMAIL=${CONTACT_EMAIL}
-      - CONTACT_PASS=${CONTACT_PASS}
 
   nginx:
     image: nginx:alpine
