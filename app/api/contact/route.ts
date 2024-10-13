@@ -22,7 +22,6 @@ export async function POST(req: Request) {
       pass: process.env.CONTACT_PASS,
     },
     logger: true,
-    debug: true,
   });
 
   const mailOptions = {
