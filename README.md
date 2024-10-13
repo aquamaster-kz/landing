@@ -1,6 +1,6 @@
 # Landing Page
 
-Welcome to the Aquamaster.kz Landing Page project! This page is designed to introduce the small family-run business specializing in water purification and osmosis systems. The goal is to provide a clean and informative entry point for customers interested in water filtration products and services.
+Welcome to the [aquamaster.kz](https://aquamaster.kz) landing Page project! This page is designed to introduce the small family-run business specializing in water purification and osmosis systems. The goal is to provide a clean and informative entry point for customers interested in water filtration products and services.
 
 ## Purpose
 
@@ -13,8 +13,8 @@ The landing page serves as an introduction to Aquamaster.kz, showcasing the busi
 
 - **Framework:** [Next.js](https://nextjs.org/)
 - **UI Library:** [Chakra UI](https://chakra-ui.com/)
-- **Deployment:** CI/CD pipeline for quick updates and changes
-- **Hosting:** **TODO** 
+- **Deployment:** [Github Actions](https://github.com/aquamaster-kz/landing/blob/master/.github/workflows/deploy.yml)
+- **Hosting:** [VPS: 0.5 GB RAM, 1 CPU, 10 GB SSD](https://www.ionos.de/server/vps)
 
 ## Features
 
