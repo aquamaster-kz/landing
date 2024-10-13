@@ -1,10 +1,7 @@
-name: Build and Deploy
+name: Build docker container and Deploy
 
 on:
   push:
-    branches:
-      - master
-  pull_request:
     branches:
       - master
 
@@ -59,6 +56,10 @@ jobs:
           key: ${{ secrets.VPS_PRIVATE_KEY }}
           script: |
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+            echo "export CONTACT_EMAIL='${{ secrets.CONTACT_EMAIL }}'" >> ~/.bashrc
+            echo "export CONTACT_PASS='${{ secrets.CONTACT_PASS }}'" >> ~/.bashrc
+            source ~/.bashrc
 
             docker compose down || true
             docker compose up -d
