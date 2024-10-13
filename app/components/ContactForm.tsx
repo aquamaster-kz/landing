@@ -20,12 +20,14 @@ import {
   useColorModeValue,
   Link,
   FormErrorMessage,
+  useToast,
 } from "@chakra-ui/react";
 import { MdPhone, MdEmail, MdLocationOn, MdOutlineEmail } from "react-icons/md";
 import { BsPerson, BsInstagram, BsWhatsapp } from "react-icons/bs";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 
-interface FormData {
+interface ContactData {
   name: string;
   email: string;
   message: string;
@@ -37,13 +39,48 @@ export default function ContactForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<ContactData>();
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    if (data.honeypot) {
-      return;
+  const [isLoading, setIsLoading] = useState(false);
+  const toast = useToast();
+
+  const sendContactForm = async (data: ContactData) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Не удалось отправить сообщение.");
+      }
+
+      const result = await response.json();
+      toast({
+        title: "Сообщение успешно доставлено.",
+        description: result.message,
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    } catch (error) {
+      toast({
+        title: "Упс! Что-то пошло не так.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Произошла неизвестная ошибка.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    } finally {
+      setIsLoading(false);
     }
-    console.log("Form submitted:", data);
   };
 
   return (
@@ -181,7 +218,7 @@ export default function ContactForm() {
                   <VStack
                     spacing={5}
                     as="form"
-                    onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={handleSubmit(sendContactForm)}
                   >
                     <Input
                       type="text"
@@ -321,6 +358,9 @@ export default function ContactForm() {
                             "brand.tertiary.500"
                           ),
                         }}
+                        isLoading={isLoading}
+                        loadingText="Отправка..."
+                        isDisabled={isLoading}
                       >
                         Отправить сообщение
                       </Button>
