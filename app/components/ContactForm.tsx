@@ -39,6 +39,7 @@ export default function ContactForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<ContactData>();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -67,6 +68,7 @@ export default function ContactForm() {
         duration: 5000,
         isClosable: true,
       });
+      reset();
     } catch (error) {
       toast({
         title: "Упс! Что-то пошло не так.",
