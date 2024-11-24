@@ -30,7 +30,8 @@ const CookieConsentBanner: React.FC = () => {
     <Box
       position="fixed"
       bottom="20px"
-      right="20px"
+      left="50%"
+      transform="translateX(-50%)"
       bg="rgba(0, 0, 0, 0.85)"
       color="white"
       p="15px"
