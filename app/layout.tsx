@@ -18,6 +18,20 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=G-WZM2CBJKC1`}
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-WZM2CBJKC1');
+            `,
+          }}
+        />
         <link rel="icon" href="/icon.ico" sizes="48x48" />
         <link
           rel="icon"
