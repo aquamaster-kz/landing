@@ -5,6 +5,7 @@ import OrderFeatures from "./components/OrderFeatures";
 import StatisticsSection from "./components/StatisticsSection";
 import ContactForm from "./components/ContactForm";
 import FAQ from "./components/FAQ";
+import CookieConsentBanner from "./components/CookieConsent";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <FAQ />
       <Divider />
       <ContactForm />
+      <CookieConsentBanner />
     </>
   );
 }
