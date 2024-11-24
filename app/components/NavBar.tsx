@@ -23,6 +23,7 @@ interface Props {
 const Links = [
   { text: "Главная", href: "#heroRef" },
   { text: "О нас", href: "#companyRef" },
+  { text: "Популярные вопросы", href: "#FAQRef" },
   { text: "Контакты", href: "#contactRef" },
 ];
 

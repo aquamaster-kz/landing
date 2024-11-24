@@ -21,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     },
     {
+        url: 'https://aquamaster.kz/#FAQRef',
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.8,
+    },
+    {
         url: 'https://aquamaster.kz/#contactRef',
         lastModified: new Date(),
         changeFrequency: 'weekly',
