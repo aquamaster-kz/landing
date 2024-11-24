@@ -20,7 +20,7 @@ export default function RootLayout({
       <head>
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-WZM2CBJKC1`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
         ></script>
         <script
           dangerouslySetInnerHTML={{
@@ -28,10 +28,11 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-WZM2CBJKC1');
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}');
             `,
           }}
         />
+
         <link rel="icon" href="/icon.ico" sizes="48x48" />
         <link
           rel="icon"
