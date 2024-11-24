@@ -56,6 +56,22 @@ export default function Footer() {
           </Box>
           <Box
             as="a"
+            href={"#FAQRef"}
+            px={2}
+            py={1}
+            rounded={"md"}
+            _hover={{
+              textDecoration: "none",
+              bg: useColorModeValue(
+                "brand.tertiary.200",
+                "brand.secondary.500"
+              ),
+            }}
+          >
+            Популярные вопросы
+          </Box>
+          <Box
+            as="a"
             href={"#contactRef"}
             px={2}
             py={1}
@@ -71,7 +87,7 @@ export default function Footer() {
             Контакты
           </Box>
         </Stack>
-        <Text>© 2007 - {currentYear} Аквамастер. Все права защищены.</Text>
+        <Text>© 2009 - {currentYear} Аквамастер. Все права защищены.</Text>
       </Container>
     </Box>
   );
