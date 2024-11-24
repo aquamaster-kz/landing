@@ -68,7 +68,7 @@ export default function Footer() {
               ),
             }}
           >
-            Популярные вопросы
+            FAQ
           </Box>
           <Box
             as="a"
@@ -87,7 +87,7 @@ export default function Footer() {
             Контакты
           </Box>
         </Stack>
-        <Text>© 2009 - {currentYear} Аквамастер. Все права защищены.</Text>
+        <Text>© 2007 - {currentYear} Аквамастер. Все права защищены.</Text>
       </Container>
     </Box>
   );
