@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import { BsMoonStarsFill, BsSun } from "react-icons/bs";
+import { trackEvent } from "../utils/analytics";
 
 interface Props {
   children: React.ReactNode;
@@ -29,6 +30,11 @@ const Links = [
 
 const NavLink = (props: Props) => {
   const { children, href } = props;
+
+  const sendAnalytics = () => {
+    trackEvent("Navigation", children);
+  };
+
   return (
     <Box
       as="a"
@@ -40,6 +46,7 @@ const NavLink = (props: Props) => {
         bg: useColorModeValue("brand.tertiary.200", "brand.secondary.500"),
       }}
       href={href}
+      onClick={sendAnalytics}
     >
       {children}
     </Box>
