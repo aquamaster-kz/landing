@@ -218,7 +218,7 @@ export default function FAQ() {
       justify={"space-between"}
       py={20}
     >
-      <Container maxW={"container.xl"}>
+      <Container maxW={"container.xl"} id="FAQRef">
         <chakra.h1
           textAlign={"center"}
           fontSize={"4xl"}
