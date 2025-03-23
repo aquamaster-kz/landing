@@ -17,7 +17,7 @@
     "@types/nodemailer": "^6.4.16",
     "cookies-next": "^5.0.2",
     "framer-motion": "^11.5.4",
-    "next": "14.2.21",
+    "next": "14.2.25",
     "nodemailer": "^6.9.15",
     "react": "^18",
     "react-dom": "^18",
