@@ -45,7 +45,6 @@ jobs:
           chmod 600 private_key.pem
           scp -i private_key.pem -o StrictHostKeyChecking=no ./docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}
           scp -i private_key.pem -o StrictHostKeyChecking=no -r ./nginx ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}
-          scp -i private_key.pem -o StrictHostKeyChecking=no -r ./scripts ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}
           rm private_key.pem
 
       - name: Deploy to VPS
